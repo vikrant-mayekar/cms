@@ -1,61 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# AI-Powered Laravel CMS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, feature-rich Content Management System (CMS) built with Laravel 11, featuring a token-based API, role-based access control, and AI-powered content generation. The frontend is a sleek, responsive single-page application experience built with Blade and vanilla JavaScript.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Core Backend & API
+- **Modern Laravel 11 Backend**: Built on the latest version of Laravel for performance and security.
+- **JWT-Based API Authentication**: Secure, stateless authentication for all API endpoints.
+- **Asynchronous Job Queuing**: Heavy tasks like AI content generation are handled in the background for a snappy user experience.
+- **Role-Based Access Control (RBAC)**:
+    - **Admin**: Full control over all articles, categories, and users.
+    - **Author**: Can only create and manage their own articles.
+- **Comprehensive API Testing**: Feature tests for all major API endpoints to ensure reliability.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### AI-Powered Content Generation
+- **Asynchronous Slug Generation**: Automatically creates a unique, SEO-friendly slug from the article title in a background job.
+- **Asynchronous Summary Generation**: Uses a simulated AI service to automatically generate a concise summary of the article content.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Content Management
+- **Full Article CRUD**: Create, read, update, and delete articles.
+- **Advanced Filtering**: Filter articles by category, status (draft, published, archived), or a specific date range.
+- **Category Management (Admin Only)**: Admins have a dedicated interface to manage content categories.
 
-## Learning Laravel
+### Modern Frontend
+- **Reusable Blade Components**: A clean and maintainable frontend architecture using a master layout and shared components.
+- **Dynamic UI**: The user interface dynamically shows or hides admin-only features based on the logged-in user's role.
+- **Modern Design**:
+    - **Glass-Morphism Login Screen**: A beautiful, animated login page.
+    - **Professional Dashboard**: A sleek, responsive dashboard with a sidebar, animated content cards, and a personalized greeting.
+    - **User-Friendly Forms**: Modern and intuitive forms for creating and editing content.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Getting Started
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Follow these instructions to get the project set up and running on your local machine.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
 
-## Laravel Sponsors
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- A database (e.g., MySQL, PostgreSQL)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone the Repository
 
-### Premium Partners
+```bash
+git clone https://github.com/vikrant-mayekar/cms.git
+cd cms
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Install Dependencies
 
-## Contributing
+Install both PHP and JavaScript dependencies.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+npm install
+```
 
-## Code of Conduct
+### 3. Environment Configuration
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Create a `.env` file by copying the example file.
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Now, open the `.env` file and configure your database connection details (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
 
-## License
+### 4. Generate Application Keys
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Generate the Laravel application key and the JWT secret key.
+
+```bash
+php artisan key:generate
+php artisan jwt:secret
+```
+
+### 5. Run Database Migrations & Seeders
+
+Reset the database and run all migrations and seeders. This will create all the necessary tables and populate the database with an admin and an author user.
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+**Default User Credentials:**
+- **Admin**: `admin@example.com` / `password`
+- **Author**: `author@example.com` / `password`
+
+### 6. Start the Servers
+
+You need to run the Laravel development server and the Vite server for frontend assets.
+
+```bash
+# Start the Laravel server
+php artisan serve
+
+# In a new terminal, start the Vite server
+npm run dev
+```
+
+### 7. Run the Queue Worker
+
+To process the asynchronous AI jobs for slug and summary generation, you need to run the queue worker.
+
+```bash
+# In a new terminal, start the queue worker
+php artisan queue:work
+```
+
+You're all set! Open your browser and navigate to `http://127.0.0.1:8000/login` to get started.
